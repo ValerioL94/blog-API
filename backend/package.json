@@ -1,14 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "dev": "node --watch --env-file=.env ./bin/www",
+    "server": "DEBUG=members-only:* npm run dev"
   },
   "keywords": [],
   "author": "ValerioL94",
   "license": "ISC",
-  "description": "blog backend",
+  "description": "blog-API backend",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
