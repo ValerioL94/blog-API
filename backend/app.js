@@ -8,10 +8,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
+const cors = require('cors');
 
 const User = require('./models/user');
 const Post = require('./models/post');
-const mongoDB = process.env.MONGODB_STRING;
+const mongoDB = process.env.MONGODB_URI;
 const indexRouter = require('./routes/index');
 const blogRouter = require('./routes/blog');
 
@@ -30,11 +31,14 @@ async function main() {
 //   })
 // );
 
+app.set('view engine', 'ejs');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.options('*', cors());
 // app.use(passport.session());
 
 // passport.use(
