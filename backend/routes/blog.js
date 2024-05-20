@@ -24,12 +24,17 @@ router.delete(
   post_controller.delete
 );
 
-/*
-router.post('/comments', comment_controller.create);
-router.get('/comments', post_controller.read);
-router.put('/comments/:commentid', comment_controller.update);
-router.delete('/comments/:commentid', comment_controller.delete);
-*/
+router.post('/posts/:postid/comments', comment_controller.create);
+router.put(
+  '/posts/:postid/comments/:commentid',
+  passport.authenticate('jwt', { session: false }),
+  comment_controller.update
+);
+router.delete(
+  '/posts/:postid/comments/:commentid',
+  passport.authenticate('jwt', { session: false }),
+  comment_controller.delete
+);
 
 router.post('/users/sign-up', user_controller.sign_up);
 router.post('/users/log-in', user_controller.log_in);
