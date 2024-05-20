@@ -43,7 +43,7 @@ exports.sign_up = [
       email: req.body.email,
     });
     if (!errors.isEmpty()) {
-      return res.json({ newUser, errors: errors.array() });
+      return res.send({ newUser, errors: errors.array() });
     }
     bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
       if (err) {
@@ -51,7 +51,7 @@ exports.sign_up = [
       }
       newUser.password = hashedPassword;
       await newUser.save();
-      res.json({ message: 'Sign-up successful' });
+      res.send({ message: 'Sign-up successful' });
     });
   }),
 ];
@@ -80,6 +80,6 @@ exports.log_out = asyncHandler(async (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.json({ message: 'Log-out successful' });
+    res.send({ message: 'Log-out successful' });
   });
 });
