@@ -1,12 +1,10 @@
 const Post = require('../models/post');
+const Comment = require('../models/comment');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.index = asyncHandler(async (req, res, next) => {
-  const posts = await Post.find()
-    .sort({ time: 1 })
-    .populate('author', '-password')
-    .exec();
+  const posts = await Post.find().populate('author', '-password').exec();
   res.json({ posts });
 });
 exports.create = [
@@ -36,13 +34,14 @@ exports.create = [
   }),
 ];
 exports.read = asyncHandler(async (req, res, next) => {
-  const post = await Post.findById(req.params.postid)
-    .populate('author', '-password')
-    .exec();
+  const [post, commentsInPost] = await Promise.all([
+    Post.findById(req.params.postid).populate('author', '-password').exec(),
+    Comment.find({ post: req.params.postid }).exec(),
+  ]);
   if (!post) {
     return res.status(404).send({ error: 'Post not Found' });
   }
-  res.json({ post });
+  res.json({ post, commentsInPost });
 });
 exports.update = [
   body('title', 'Title should contain at least 1 character')
@@ -68,11 +67,11 @@ exports.update = [
       return res.send({ post, errors: errors.array() });
     }
     await Post.findByIdAndUpdate(req.params.postid, post, {});
-    res.json({ message: `Post ${post._id} updated successfully` });
+    res.send({ message: `Post ${post._id} updated successfully` });
   }),
 ];
 
 exports.delete = asyncHandler(async (req, res, next) => {
   await Post.findByIdAndDelete(req.params.postid).exec();
-  res.json({ message: 'Post deleted successfully.' });
+  res.send({ message: 'Post deleted successfully.' });
 });
