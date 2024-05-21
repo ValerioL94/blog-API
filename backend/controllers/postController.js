@@ -4,7 +4,10 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.index = asyncHandler(async (req, res, next) => {
-  const posts = await Post.find().populate('author', '-password').exec();
+  const posts = await Post.find()
+    .populate('author', '-password')
+    .sort({ createdAt: -1 })
+    .exec();
   res.json(posts);
 });
 exports.create = [
