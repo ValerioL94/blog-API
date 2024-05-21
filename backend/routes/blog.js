@@ -38,6 +38,6 @@ router.delete(
 
 router.post('/users/sign-up', user_controller.sign_up);
 router.post('/users/log-in', user_controller.log_in);
-router.post('/users/log-out', user_controller.log_out);
+// router.post('/users/log-out', user_controller.log_out);
 
 module.exports = router;

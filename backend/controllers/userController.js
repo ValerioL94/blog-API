@@ -75,11 +75,11 @@ exports.log_in = asyncHandler(async (req, res, next) => {
   return res.status(401).json({ message: 'Auth Failed' });
 });
 
-exports.log_out = asyncHandler(async (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.send({ message: 'Log-out successful' });
-  });
-});
+// exports.log_out = asyncHandler(async (req, res, next) => {
+//   req.logout((err) => {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.send({ message: 'Log-out successful' });
+//   });
+// });
