@@ -1,0 +1,135 @@
+header {
+  text-align: center;
+  border-bottom: 2px solid;
+  background-color: cornflowerblue;
+}
+header a {
+  color: black;
+}
+header a:hover,
+header a:focus {
+  padding: inherit;
+}
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.posts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+}
+.post {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+#sidebar {
+  width: 250px;
+  min-width: 100px;
+  padding: 25px;
+  margin-right: 25px;
+  background-color: aliceblue;
+}
+nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav li {
+  margin: 25px 0;
+}
+
+hr {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+#dynamic-page {
+  width: 100%;
+  padding: 25px;
+}
+
+.page-list li {
+  margin: 15px 0;
+}
+
+.detail-list {
+  margin-left: 25px;
+}
+
+.detail-list dd {
+  margin: 0 0 25px;
+}
+
+.form-group {
+  width: 100%;
+}
+.form-control {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 2px solid;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+.form-control:hover,
+.form-control:focus {
+  border: 2px solid blue;
+  outline: none;
+}
+
+.form-submit {
+  height: 30px;
+  width: 80px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: blue;
+}
+.form-submit:hover,
+.form-submit:focus {
+  background-color: blue;
+  color: white;
+  border-color: blue;
+  outline: none;
+}
+.errors-list {
+  color: crimson;
+  font-weight: 600;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-top: 2px solid;
+  background-color: cornflowerblue;
+}
+
+.logo {
+  height: 25px;
+}
+.pulse:hover {
+  animation: pulse ease-in-out 2.75s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
