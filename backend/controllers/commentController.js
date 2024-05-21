@@ -24,7 +24,7 @@ exports.create = [
       return res.send({ comment, errors: errors.array() });
     }
     await comment.save();
-    res.json({ comment });
+    res.json(comment);
   }),
 ];
 

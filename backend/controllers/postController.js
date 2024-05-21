@@ -5,7 +5,7 @@ const { body, validationResult } = require('express-validator');
 
 exports.index = asyncHandler(async (req, res, next) => {
   const posts = await Post.find().populate('author', '-password').exec();
-  res.json({ posts });
+  res.json(posts);
 });
 exports.create = [
   body('title', 'Title should contain at least 1 character')
@@ -30,7 +30,7 @@ exports.create = [
       return res.send({ post, errors: errors.array() });
     }
     await post.save();
-    res.json({ post });
+    res.json(post);
   }),
 ];
 exports.read = asyncHandler(async (req, res, next) => {
