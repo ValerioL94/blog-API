@@ -18,7 +18,8 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
-app.options('*', cors());
+// app.options('*', cors());
+app.use(cors());
 
 passport.use(jwtStrategy);
 
