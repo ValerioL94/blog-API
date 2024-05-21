@@ -5,8 +5,8 @@ const comment_controller = require('../controllers/commentController');
 const user_controller = require('../controllers/userController');
 const passport = require('passport');
 
-router.get('/', post_controller.index);
-
+router.get('/', (req, res) => res.send('home'));
+router.get('/posts', post_controller.index);
 router.post(
   '/posts',
   passport.authenticate('jwt', { session: false }),
