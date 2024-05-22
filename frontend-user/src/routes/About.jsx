@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <div className="wrapper">
-      <h1>About</h1>
+      <h2>About</h2>
       <p>This is the front-end site of the blog-API project.</p>
       <p>
         As you might have read on the home page there is currently no
