@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import { postsLoader, postLoader, commentsLoader } from './Loader.jsx';
+import { postsLoader, postLoader } from './Loader.jsx';
 import ErrorPage from './routes/error-page.jsx';
 import Root from './routes/Root.jsx';
 import Home from './routes/Home.jsx';
@@ -21,13 +21,13 @@ export default function App() {
             {
               path: 'posts',
               element: <Blog />,
-              //, loader: postsLoader
+              loader: postsLoader,
             },
             { path: 'about', element: <About /> },
             {
               path: 'posts/:postId',
               element: <Post />,
-              //, loader: postLoader
+              loader: postLoader,
             },
           ],
         },
