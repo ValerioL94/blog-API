@@ -42,7 +42,12 @@ main {
   height: 100%;
   background-color: white;
 }
-
+#error-page {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin: auto;
+}
 footer {
   display: flex;
   align-items: center;
