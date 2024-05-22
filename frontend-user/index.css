@@ -12,17 +12,15 @@ body {
   min-height: 100%;
 }
 
-/* a {
-  color: rgb(30, 101, 173);
+a {
+  color: blue;
   transition: all ease-in-out 0.1s;
-  text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: deepskyblue;
-  font-weight: 600;
+  color: rgb(0, 149, 255);
   outline: none;
-} */
+}
 
 .form-group {
   width: 100%;

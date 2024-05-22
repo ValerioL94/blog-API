@@ -9,9 +9,6 @@ header {
   border-bottom: 2px solid grey;
 }
 
-a {
-  text-decoration: none;
-}
 #navbar {
   background-color: black;
   border-top: 1px solid grey;
@@ -29,6 +26,7 @@ a {
   color: white;
   border-radius: 10px;
   padding: 5px;
+  text-decoration: none;
 }
 
 #navbar a.active {
