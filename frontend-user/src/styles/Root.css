@@ -13,6 +13,9 @@ header {
   background-color: black;
   border-top: 1px solid grey;
 }
+#navbar span {
+  cursor: default;
+}
 
 #navbar ul {
   display: flex;

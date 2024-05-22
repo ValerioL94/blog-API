@@ -24,7 +24,7 @@ export default function Blog() {
     fetchPosts();
   }, []);
   return (
-    <main>
+    <div className="wrapper">
       <h2>Posts</h2>
       <div className="posts-wrapper">
         {!posts.length && <h2>Fetching posts...</h2>}
@@ -48,6 +48,6 @@ export default function Blog() {
             )
           )}
       </div>
-    </main>
+    </div>
   );
 }
