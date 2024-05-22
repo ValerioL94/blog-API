@@ -10,4 +10,28 @@
   border: 2px solid black;
   border-radius: 15px;
   padding: 10px;
+  height: 150px;
+  width: 600px;
+}
+.post-preview h3 {
+  text-align: center;
+}
+
+.post-fullview {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 10px;
+  width: 600px;
+}
+
+.comments-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.comment {
+  border: 2px solid blue;
+  width: 400px;
+  border-radius: 15px;
+  padding: 10px;
 }
