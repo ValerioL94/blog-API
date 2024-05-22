@@ -1,0 +1,13 @@
+.posts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.post-preview {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 10px;
+}
