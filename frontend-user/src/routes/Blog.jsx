@@ -22,6 +22,7 @@ export default function Blog() {
                   <strong>Date:</strong>{' '}
                   {new Date(data.createdAt).toLocaleString()}
                 </p>
+                <hr />
               </div>
             ) : (
               ''

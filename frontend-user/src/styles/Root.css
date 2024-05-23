@@ -35,14 +35,18 @@ main {
   align-items: center;
   height: 100%;
   background-color: white;
+  margin: 10px 0;
   padding: 10px;
   box-sizing: border-box;
 }
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 5px;
+  width: 100%;
   max-width: 750px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 15px 3px grey;
 }
 .wrapper h1 {
   text-align: center;
@@ -50,6 +54,8 @@ main {
 }
 .home-photo {
   max-width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 #error-page {
   display: flex;

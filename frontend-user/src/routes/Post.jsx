@@ -26,7 +26,7 @@ function Post() {
       </div>
       <div className="comments-wrapper">
         {!commentsInPost.length && <h3>There are no comments.</h3>}
-        {commentsInPost.length && <h3>Comments: </h3>}
+        {commentsInPost.length && <h3>Comments</h3>}
         {commentsInPost.length &&
           commentsInPost.map((comment) => (
             <div key={comment._id} className="comment">
@@ -35,6 +35,7 @@ function Post() {
               </p>
               <p>{comment.content}</p>
               <p>{new Date(comment.createdAt).toLocaleString()}</p>
+              <hr />
             </div>
           ))}
       </div>
