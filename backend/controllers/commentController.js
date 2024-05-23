@@ -8,7 +8,7 @@ exports.create = [
     .isLength({ min: 1 })
     .escape()
     .unescape('&#x27;'),
-  body('content', 'Content should contain at least 1 character ')
+  body('content', 'Content should contain at least 1 character')
     .trim()
     .isLength({ min: 1 })
     .escape()
@@ -21,7 +21,7 @@ exports.create = [
       post: req.params.postid,
     });
     if (!errors.isEmpty()) {
-      return res.send({ comment, errors: errors.array() });
+      return res.send(errors);
     }
     await comment.save();
     res.json(comment);
