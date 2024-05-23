@@ -1,18 +1,10 @@
 header {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: blue;
-  font-weight: 600;
   color: white;
-  border-bottom: 2px solid grey;
+  background-color: mediumblue;
+  font-weight: 600;
+  border-bottom: 3px solid grey;
 }
 
-#navbar {
-  background-color: black;
-  border-top: 1px solid grey;
-}
 #navbar span {
   cursor: default;
 }
@@ -20,8 +12,8 @@ header {
 #navbar ul {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  padding: 0;
+  gap: 1.5rem;
+  padding: 0 5px;
   list-style: none;
 }
 
@@ -33,10 +25,8 @@ header {
 }
 
 #navbar a.active {
-  color: blue;
+  color: mediumblue;
   background-color: white;
-  border-radius: 10px;
-  padding: 5px;
 }
 
 main {
@@ -45,16 +35,22 @@ main {
   align-items: center;
   height: 100%;
   background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
 }
 .wrapper {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
-  max-width: 900px;
+  max-width: 750px;
 }
-.wrapper h2 {
+.wrapper h1 {
   text-align: center;
-  color: blue;
+  color: mediumblue;
 }
-
+.home-photo {
+  max-width: 100%;
+}
 #error-page {
   display: flex;
   flex-direction: column;
@@ -66,8 +62,8 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border-top: 2px solid grey;
-  background-color: blue;
+  border-top: 3px solid grey;
+  background-color: mediumblue;
   font-weight: 600;
   color: white;
 }
