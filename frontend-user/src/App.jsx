@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  redirect,
+} from 'react-router-dom';
 import { postsLoader, postLoader } from './Loader.jsx';
 import ErrorPage from './routes/error-page.jsx';
 import Root from './routes/Root.jsx';
@@ -17,7 +21,11 @@ export default function App() {
         {
           errorElement: <ErrorPage />,
           children: [
-            { index: true, element: <Home /> },
+            { index: true, loader: async () => redirect('/home') },
+            {
+              path: 'home',
+              element: <Home />,
+            },
             {
               path: 'posts',
               element: <Blog />,
