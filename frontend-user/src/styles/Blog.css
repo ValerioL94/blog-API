@@ -31,3 +31,51 @@
 .comment {
   padding: 5px;
 }
+
+.form-wrapper {
+  padding: 10px;
+}
+.form-wrapper h3 {
+  color: mediumblue;
+}
+
+.form-group {
+  padding: 5px;
+}
+.form-control {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+.form-control:hover,
+.form-control:focus {
+  border: 2px solid mediumblue;
+  outline: none;
+}
+
+.form-submit {
+  height: 30px;
+  width: 80px;
+  border-color: grey;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: mediumblue;
+}
+.form-submit:hover,
+.form-submit:focus {
+  background-color: mediumblue;
+  color: white;
+  border-color: mediumblue;
+  outline: none;
+}
+.errors-list {
+  color: crimson;
+  font-weight: 600;
+}

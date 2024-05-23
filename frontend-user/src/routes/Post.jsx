@@ -1,7 +1,11 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, Form } from 'react-router-dom';
 
 function Post() {
   const { commentsInPost, post } = useLoaderData();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log('Form submitted, thanks!');
+  }
   return (
     <div className="wrapper">
       <h1>{post.title}</h1>
@@ -23,8 +27,8 @@ function Post() {
         </p>
       </div>
       <div className="comments-wrapper">
-        {!commentsInPost.length && <h3>There are no comments.</h3>}
-        {commentsInPost.length && <h3>Comments</h3>}
+        <h3>Comments</h3>
+        {!commentsInPost.length && <p>There are no comments.</p>}
         {commentsInPost.length &&
           commentsInPost.map((comment) => (
             <div key={comment._id} className="comment">
@@ -36,6 +40,34 @@ function Post() {
               <hr />
             </div>
           ))}
+      </div>
+      <div className="form-wrapper">
+        <h3>Add comment</h3>
+        <Form onSubmit={handleSubmit} className="form-group" method="post">
+          <label htmlFor="username">Username: </label>
+          <input
+            name="username"
+            id="username"
+            className="form-control"
+            type="text"
+            placeholder="John Doe"
+            required
+          />
+          <label htmlFor="content">Comment: </label>
+          <textarea
+            style={{ resize: 'none' }}
+            name="content"
+            id="content"
+            className="form-control"
+            rows="5"
+            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit efficitur lacus nec fermentum. Sed nisl mauris, dapibus aliquam leo at, efficitur blandit diam."
+            maxLength={300}
+            required
+          ></textarea>
+          <button className="form-submit" type="submit">
+            Send
+          </button>
+        </Form>
       </div>
     </div>
   );
