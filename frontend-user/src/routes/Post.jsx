@@ -2,8 +2,6 @@ import { useLoaderData } from 'react-router-dom';
 
 function Post() {
   const { commentsInPost, post } = useLoaderData();
-  console.log(commentsInPost);
-  console.log(post);
   return (
     <div className="wrapper">
       <h1>{post.title}</h1>

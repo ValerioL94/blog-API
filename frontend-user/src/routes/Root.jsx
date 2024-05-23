@@ -7,7 +7,7 @@ export default function Root() {
         <nav id="navbar">
           <ul>
             <li>
-              <NavLink to={'/'}>Home</NavLink>
+              <NavLink to={'/home'}>Home</NavLink>
             </li>
             <span>|</span>
             <li>
@@ -25,9 +25,9 @@ export default function Root() {
       </main>
       <footer>
         <p>Copyright © 2024 ValerioL94</p>
-        <a href="https://github.com/ValerioL94">
+        <a className="git-link" href="https://github.com/ValerioL94">
           <img
-            className="logo pulse"
+            className="logo"
             src="/assets/icons/github-mark-white.svg"
             alt="github logo"
           />

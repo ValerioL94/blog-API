@@ -24,6 +24,12 @@ header {
   text-decoration: none;
 }
 
+#navbar a:hover,
+#navbar a:focus {
+  color: rgb(0, 225, 255);
+  background-color: white;
+}
+
 #navbar a.active {
   color: mediumblue;
   background-color: white;
@@ -77,7 +83,8 @@ footer {
 .logo {
   height: 25px;
 }
-.pulse:hover {
+.git-link:hover,
+.git-link:focus {
   animation: pulse ease-in-out 2.75s infinite;
 }
 
