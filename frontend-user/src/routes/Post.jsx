@@ -6,7 +6,7 @@ function Post() {
   console.log(post);
   return (
     <div className="wrapper">
-      <h2>{post.title}</h2>
+      <h1>{post.title}</h1>
       <div className="post-fullview">
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <p>

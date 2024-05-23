@@ -1,15 +1,21 @@
 export default function About() {
   return (
     <div className="wrapper">
-      <h2>About</h2>
-      <p>This is the front-end site of the blog-API project.</p>
+      <h1>About</h1>
       <p>
-        As you might have read on the home page there is currently no
-        registration needed to leave comments.
+        This is the front-end site of the blog-API project where users can read
+        posts and leave comments.
       </p>
       <p>
-        This means that you won&apos;t be able to edit or delete comments, so
-        keep that in mind before posting.
+        At first I was going to make a simple react app, then I decided to use
+        react-router to have a couple of different pages and practice a bit more
+        what I&apos;ve learnt in the react course.
+      </p>
+      <p>
+        As you might have read on the home page there is currently no
+        registration needed to leave comments, this means that you won&apos;t be
+        able to edit or delete them as well, so keep that in mind before
+        posting!
       </p>
       <p>
         If you don&apos;t know why you&apos;re here or what I&apos;m talking
