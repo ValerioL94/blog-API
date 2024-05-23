@@ -19,6 +19,7 @@ header {
 
 #navbar a {
   color: white;
+  border: 2px solid mediumblue;
   border-radius: 10px;
   padding: 5px;
   text-decoration: none;
@@ -26,12 +27,12 @@ header {
 
 #navbar a:hover,
 #navbar a:focus {
-  color: rgb(0, 225, 255);
-  background-color: white;
+  border: 2px solid aqua;
 }
 
 #navbar a.active {
   color: mediumblue;
+  border-color: mediumblue;
   background-color: white;
 }
 

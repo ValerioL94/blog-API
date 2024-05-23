@@ -21,7 +21,7 @@ export default function App() {
         {
           errorElement: <ErrorPage />,
           children: [
-            { index: true, loader: async () => redirect('/home') },
+            { index: true, loader: async () => redirect('home') },
             {
               path: 'home',
               element: <Home />,

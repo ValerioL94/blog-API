@@ -7,7 +7,7 @@ export default function Root() {
         <nav id="navbar">
           <ul>
             <li>
-              <NavLink to={'/home'}>Home</NavLink>
+              <NavLink to={'home'}>Home</NavLink>
             </li>
             <span>|</span>
             <li>
