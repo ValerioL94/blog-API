@@ -7,9 +7,9 @@ export default function About() {
         posts and leave comments.
       </p>
       <p>
-        At first I was going to make a simple react app, then I decided to use
-        react-router to have a couple of different pages and practice a bit more
-        what I&apos;ve learnt in the react course.
+        For this site, I decided to use react and react-router to have a couple
+        of different pages and practice a bit more what I&apos;ve learnt in the
+        react course.
       </p>
       <p>
         As you might have read on the home page there is currently no
