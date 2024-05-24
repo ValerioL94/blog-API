@@ -8,9 +8,9 @@ exports.create = [
     .isLength({ min: 1 })
     .escape()
     .unescape('&#x27;'),
-  body('content', 'Content should contain at least 1 character')
+  body('content', 'Content must contain between 1 and 500 characters')
     .trim()
-    .isLength({ min: 1 })
+    .isLength({ min: 1, max: 500 })
     .escape()
     .unescape('&#x27;'),
   asyncHandler(async (req, res, next) => {
@@ -21,7 +21,7 @@ exports.create = [
       post: req.params.postid,
     });
     if (!errors.isEmpty()) {
-      return res.send(errors);
+      return res.status(400).json(errors);
     }
     await comment.save();
     res.json(comment);
@@ -48,7 +48,7 @@ exports.update = [
       _id: req.params.commentid,
     });
     if (!errors.isEmpty()) {
-      return res.send({ comment, errors: errors.array() });
+      return res.status(400).json(errors);
     }
     await Comment.findByIdAndUpdate(req.params.commentid, comment, {});
     res.send({ message: `Comment ${comment._id} updated successfully` });

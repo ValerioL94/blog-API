@@ -43,7 +43,7 @@ exports.sign_up = [
       email: req.body.email,
     });
     if (!errors.isEmpty()) {
-      return res.send({ newUser, errors: errors.array() });
+      return res.status(400).json(errors);
     }
     bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
       if (err) {

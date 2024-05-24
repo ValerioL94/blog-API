@@ -30,7 +30,7 @@ exports.create = [
       author: req.user.id,
     });
     if (!errors.isEmpty()) {
-      return res.send({ post, errors: errors.array() });
+      return res.status(400).json(errors);
     }
     await post.save();
     res.json(post);
@@ -67,7 +67,7 @@ exports.update = [
       _id: req.params.postid,
     });
     if (!errors.isEmpty()) {
-      return res.send({ post, errors: errors.array() });
+      return res.status(400).json(errors);
     }
     await Post.findByIdAndUpdate(req.params.postid, post, {});
     res.send({ message: `Post ${post._id} updated successfully` });
