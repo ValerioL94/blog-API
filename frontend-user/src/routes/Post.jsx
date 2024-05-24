@@ -1,5 +1,6 @@
 import { useLoaderData, Form, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 function Post() {
   const navigate = useNavigate();
@@ -10,10 +11,11 @@ function Post() {
     return bDate - aDate;
   });
   const url = `http://localhost:3000/blog/posts/${post._id}/comments`;
-  const [comment, setComment] = useState({
+  const emptyComment = {
     username: '',
     content: '',
-  });
+  };
+  const [comment, setComment] = useState(emptyComment);
   const [errors, setErrors] = useState([]);
   function handleChange(e) {
     setComment({
@@ -37,10 +39,7 @@ function Post() {
         setErrors(data.errors);
       } else {
         navigate(`/posts/${post._id}`);
-        setComment({
-          username: '',
-          content: '',
-        });
+        setComment(emptyComment);
         setErrors([]);
       }
     } catch (error) {
@@ -116,7 +115,7 @@ function Post() {
         {errors && (
           <ul>
             {errors.map((error) => (
-              <li className="errors-list" key={error.path}>
+              <li className="errors-list" key={uuidv4()}>
                 {error.msg}
               </li>
             ))}
