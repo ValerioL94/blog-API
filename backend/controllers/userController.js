@@ -36,6 +36,11 @@ exports.sign_up = [
   body('passwordConfirm', 'Passwords do not match').custom((value, { req }) => {
     return value === req.body.password;
   }),
+  body('authorKey', 'Wrong secret password')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .equals(process.env.AUTHOR_KEY),
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     const newUser = new User({
