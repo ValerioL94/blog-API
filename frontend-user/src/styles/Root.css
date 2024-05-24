@@ -3,6 +3,8 @@ header {
   background-color: mediumblue;
   font-weight: 600;
   border-bottom: 3px solid grey;
+  position: sticky;
+  top: 0;
 }
 
 #navbar span {
