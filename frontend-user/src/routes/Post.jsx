@@ -4,6 +4,11 @@ import { useState } from 'react';
 function Post() {
   const navigate = useNavigate();
   const { commentsInPost, post } = useLoaderData();
+  const sortedComments = commentsInPost.sort((a, b) => {
+    let aDate = new Date(a.createdAt);
+    let bDate = new Date(b.createdAt);
+    return bDate - aDate;
+  });
   const url = `http://localhost:3000/blog/posts/${post._id}/comments`;
   const [comment, setComment] = useState({
     username: '',
@@ -66,7 +71,7 @@ function Post() {
         <h3>Comments</h3>
         {!commentsInPost.length && <p>There are no comments.</p>}
         {commentsInPost &&
-          commentsInPost.map((comment) => (
+          sortedComments.map((comment) => (
             <div key={comment._id} className="comment">
               <p>
                 <strong>{comment.username}</strong>
