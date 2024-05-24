@@ -9,7 +9,7 @@ export default function Home() {
       <p>
         Already have an account? Go ahead and log in then! <br /> Don&apos;t
         have an account? If you know the secret password you can create one in
-        the blink of an eye!{' '}
+        the blink of an eye!
       </p>
     </div>
   );
