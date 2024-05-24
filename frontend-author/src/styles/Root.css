@@ -1,0 +1,99 @@
+header {
+  color: white;
+  background-color: forestgreen;
+  font-weight: 600;
+  border-bottom: 3px solid grey;
+  position: sticky;
+  top: 0;
+}
+
+#navbar span {
+  cursor: default;
+}
+
+#navbar ul {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 5px;
+  list-style: none;
+}
+
+#navbar a {
+  color: white;
+  border: 2px solid forestgreen;
+  border-radius: 10px;
+  padding: 5px;
+  text-decoration: none;
+}
+
+#navbar a:hover,
+#navbar a:focus {
+  border: 2px solid greenyellow;
+}
+
+#navbar a.active {
+  color: forestgreen;
+  border-color: forestgreen;
+  background-color: white;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background-color: white;
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 100%;
+  max-width: 750px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 15px 3px grey;
+}
+.wrapper h1 {
+  text-align: center;
+  color: forestgreen;
+}
+#error-page {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin: auto;
+}
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-top: 3px solid grey;
+  background-color: forestgreen;
+  font-weight: 600;
+  color: white;
+}
+
+.logo {
+  height: 25px;
+}
+.git-link:hover,
+.git-link:focus {
+  animation: pulse ease-in-out 2.75s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,1 +1,24 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-size: 18px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
+#root {
+  display: grid;
+  grid-template-rows: max-content auto 50px;
+  min-height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: forestgreen;
+  transition: all ease-in-out 0.1s;
+}
+a:hover,
+a:focus {
+  outline: none;
+  text-decoration: underline;
+}

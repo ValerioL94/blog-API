@@ -1,0 +1,81 @@
+.posts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.post-preview {
+  padding: 5px;
+  height: 150px;
+}
+.post-preview h2 {
+  text-align: center;
+}
+
+.post-fullview {
+  padding: 10px;
+}
+
+.comments-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+}
+.comments-wrapper h3 {
+  margin: 0;
+  color: forestgreen;
+}
+.comment {
+  padding: 5px;
+}
+
+.form-wrapper {
+  padding: 10px;
+}
+.form-wrapper h3 {
+  color: forestgreen;
+}
+
+.form-group {
+  padding: 5px;
+}
+.form-control {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+.form-control:hover,
+.form-control:focus {
+  border: 2px solid forestgreen;
+  outline: none;
+}
+
+.form-submit {
+  height: 30px;
+  width: 80px;
+  border-color: grey;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: forestgreen;
+}
+.form-submit:hover,
+.form-submit:focus {
+  background-color: forestgreen;
+  color: white;
+  border-color: forestgreen;
+  outline: none;
+}
+.errors-list {
+  color: crimson;
+  font-weight: 600;
+}
