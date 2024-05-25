@@ -29,6 +29,13 @@ export default function Blog() {
             )
           )}
       </div>
+      <button
+        style={{ alignSelf: 'flex-end', margin: '10px' }}
+        className="form-submit"
+        onClick={() => (document.documentElement.scrollTop = 0)}
+      >
+        Go to top
+      </button>
     </div>
   );
 }
