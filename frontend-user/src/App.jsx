@@ -3,7 +3,7 @@ import {
   RouterProvider,
   redirect,
 } from 'react-router-dom';
-import { postsLoader, postLoader, commentAction } from './Loader.jsx';
+import { postsLoader, postLoader, commentAction } from './Loader-action.jsx';
 import ErrorPage from './routes/error-page.jsx';
 import Root from './routes/Root.jsx';
 import Home from './routes/Home.jsx';

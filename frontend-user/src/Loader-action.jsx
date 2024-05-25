@@ -1,4 +1,4 @@
-import { fetchPosts, fetchPost, sendComment } from './posts';
+import { fetchPosts, fetchPost, sendComment } from './loader-action';
 
 export async function postsLoader() {
   const posts = await fetchPosts();

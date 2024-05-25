@@ -1,3 +1,4 @@
+const localUrl = 'http://localhost:3000/blog/posts';
 const getRequest = async (url) => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -22,7 +23,7 @@ const postRequest = async (url, formData) => {
 
 export async function fetchPosts() {
   try {
-    const posts = await getRequest('http://localhost:3000/blog/posts');
+    const posts = await getRequest(localUrl);
     return posts;
   } catch (error) {
     throw new Error(error.message);
@@ -31,7 +32,7 @@ export async function fetchPosts() {
 
 export async function fetchPost(postid) {
   try {
-    const post = await getRequest('http://localhost:3000/blog/posts/' + postid);
+    const post = await getRequest(localUrl + postid);
     return post;
   } catch (error) {
     throw new Error(error.message);
@@ -41,7 +42,7 @@ export async function fetchPost(postid) {
 export async function sendComment(postid, formData) {
   try {
     const response = await postRequest(
-      'http://localhost:3000/blog/posts/' + postid + '/comments',
+      localUrl + postid + '/comments',
       formData
     );
     return response;
