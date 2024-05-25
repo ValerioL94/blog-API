@@ -3,7 +3,7 @@ import {
   RouterProvider,
   redirect,
 } from 'react-router-dom';
-import { postsLoader, postLoader } from './Loader.jsx';
+import { postsLoader, postLoader, commentAction } from './Loader-action.jsx';
 import ErrorPage from './routes/error-page.jsx';
 import Root from './routes/Root.jsx';
 import Home from './routes/Home.jsx';
@@ -36,6 +36,7 @@ export default function App() {
               path: 'posts/:postId',
               element: <Post />,
               loader: postLoader,
+              action: commentAction,
             },
           ],
         },
