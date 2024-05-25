@@ -1,10 +1,15 @@
-import { useLoaderData, Form, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useLoaderData, Form, useActionData } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 function Post() {
-  const navigate = useNavigate();
+  const response = useActionData();
   const { commentsInPost, post } = useLoaderData();
-  const url = `http://localhost:3000/blog/posts/${post._id}/comments`;
+  const sortedComments = commentsInPost.sort((a, b) => {
+    let aDate = new Date(a.createdAt);
+    let bDate = new Date(b.createdAt);
+    return bDate - aDate;
+  });
   const [comment, setComment] = useState({
     username: '',
     content: '',
@@ -16,32 +21,15 @@ function Post() {
       [e.target.name]: e.target.value,
     });
   }
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      const requestData = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(comment),
-      };
-      const response = await fetch(url, requestData);
-      const data = await response.json();
-      if (data.errors && data.errors.length > 0) {
-        setErrors(data.errors);
-      } else {
-        navigate(`/posts/${post._id}`);
-        setComment({
-          username: '',
-          content: '',
-        });
-        setErrors([]);
-      }
-    } catch (error) {
-      throw new Error(error);
+  useEffect(() => {
+    if (response && response.errors) {
+      setErrors(response.errors);
     }
-  }
+    if (response && !response.errors) {
+      setComment({ username: '', content: '' });
+      setErrors([]);
+    }
+  }, [response]);
   return (
     <div className="wrapper">
       <h1>{post.title}</h1>
@@ -66,7 +54,7 @@ function Post() {
         <h3>Comments</h3>
         {!commentsInPost.length && <p>There are no comments.</p>}
         {commentsInPost &&
-          commentsInPost.map((comment) => (
+          sortedComments.map((comment) => (
             <div key={comment._id} className="comment">
               <p>
                 <strong>{comment.username}</strong>
@@ -79,7 +67,7 @@ function Post() {
       </div>
       <div className="form-wrapper">
         <h3>Add comment</h3>
-        <Form onSubmit={handleSubmit} className="form-group" method="post">
+        <Form className="form-group" method="post">
           <label htmlFor="username">Username: </label>
           <input
             name="username"
@@ -108,16 +96,25 @@ function Post() {
             Send
           </button>
         </Form>
-        {errors && (
+        {errors ? (
           <ul>
             {errors.map((error) => (
-              <li className="errors-list" key={error.path}>
+              <li className="errors-list" key={uuidv4()}>
                 {error.msg}
               </li>
             ))}
           </ul>
+        ) : (
+          ''
         )}
       </div>
+      <button
+        style={{ alignSelf: 'flex-end', margin: '10px' }}
+        className="form-submit"
+        onClick={() => (document.documentElement.scrollTop = 0)}
+      >
+        Go to top
+      </button>
     </div>
   );
 }

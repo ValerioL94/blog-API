@@ -60,7 +60,7 @@
 
 .form-submit {
   height: 30px;
-  width: 80px;
+  min-width: 80px;
   border-color: grey;
   border-radius: 5px;
   font-size: 0.9rem;
