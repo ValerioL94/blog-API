@@ -3,9 +3,9 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.create = [
-  body('username', 'Username should contain at least 1 character')
+  body('username', 'Username should contain at least 10 character')
     .trim()
-    .isLength({ min: 1 })
+    .isLength({ min: 10 })
     .escape()
     .unescape('&#x27;'),
   body('content', 'Content must contain between 1 and 500 characters')
@@ -21,7 +21,7 @@ exports.create = [
       post: req.params.postid,
     });
     if (!errors.isEmpty()) {
-      return res.status(400).json(errors);
+      return res.json(errors);
     }
     await comment.save();
     res.json(comment);
@@ -48,7 +48,7 @@ exports.update = [
       _id: req.params.commentid,
     });
     if (!errors.isEmpty()) {
-      return res.status(400).json(errors);
+      return res.json(errors);
     }
     await Comment.findByIdAndUpdate(req.params.commentid, comment, {});
     res.send({ message: `Comment ${comment._id} updated successfully` });
