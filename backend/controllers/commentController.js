@@ -3,9 +3,9 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.create = [
-  body('username', 'Username should contain at least 10 character')
+  body('username', 'Username must contain at least 1 character')
     .trim()
-    .isLength({ min: 10 })
+    .isLength({ min: 1 })
     .escape()
     .unescape('&#x27;'),
   body('content', 'Content must contain between 1 and 500 characters')
