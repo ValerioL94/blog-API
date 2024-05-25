@@ -109,7 +109,7 @@ function Post() {
         )}
       </div>
       <button
-        style={{ alignSelf: 'flex-end', margin: '0 10px 10px 0' }}
+        style={{ alignSelf: 'flex-end', margin: '10px' }}
         className="form-submit"
         onClick={() => (document.documentElement.scrollTop = 0)}
       >
