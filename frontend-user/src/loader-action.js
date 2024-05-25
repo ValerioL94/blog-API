@@ -32,7 +32,7 @@ export async function fetchPosts() {
 
 export async function fetchPost(postid) {
   try {
-    const post = await getRequest(localUrl + postid);
+    const post = await getRequest(`${localUrl}/${postid}`);
     return post;
   } catch (error) {
     throw new Error(error.message);
@@ -42,7 +42,7 @@ export async function fetchPost(postid) {
 export async function sendComment(postid, formData) {
   try {
     const response = await postRequest(
-      localUrl + postid + '/comments',
+      `${localUrl}/${postid}/comments`,
       formData
     );
     return response;
