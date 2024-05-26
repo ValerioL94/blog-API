@@ -34,7 +34,7 @@ export default function Blog() {
         className="form-submit"
         onClick={() => (document.documentElement.scrollTop = 0)}
       >
-        Go to top
+        Top &#8679;
       </button>
     </div>
   );
