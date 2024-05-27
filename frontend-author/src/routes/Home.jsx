@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <div className="wrapper">
@@ -7,9 +8,12 @@ export default function Home() {
         posts and comments.
       </p>
       <p>
-        Already have an account? Go ahead and log in then! <br /> Don&apos;t
-        have an account? If you know the secret password you can create one in
-        the blink of an eye!
+        Don&apos;t have an account? If you know the secret password you can{' '}
+        <Link to={'/signup'}>sign up</Link> in the blink of an eye!
+      </p>
+      <p>
+        Already have an account? Go ahead and <Link to={'/login'}>log in</Link>{' '}
+        then!
       </p>
     </div>
   );
