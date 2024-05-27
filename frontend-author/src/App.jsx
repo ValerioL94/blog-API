@@ -5,7 +5,7 @@ import {
   Outlet,
 } from 'react-router-dom';
 import { postsLoader, postLoader, commentAction } from './Loader-action.jsx';
-import ErrorPage from './routes/error-page.jsx';
+import ErrorPage from './routes/Error-page.jsx';
 import Root from './routes/Root.jsx';
 import Home from './routes/Home.jsx';
 import Blog from './routes/Blog.jsx';
