@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import '../styles/Root.css';
-export default function Root() {
+// eslint-disable-next-line react/prop-types
+export default function Root({ token }) {
   return (
     <>
       <header>
@@ -9,11 +10,23 @@ export default function Root() {
             <li>
               <NavLink to={'home'}>Home</NavLink>
             </li>
-            <span>|</span>
-            <li>
-              <NavLink to={'posts'}>Posts</NavLink>
-            </li>
-            <span>|</span>
+            {token ? (
+              <>
+                <li>
+                  <NavLink to={'posts'}>Posts</NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink to={'signup'}>Sign-up</NavLink>
+                </li>
+
+                <li>
+                  <NavLink to={'login'}>Log-in</NavLink>
+                </li>
+              </>
+            )}
             <li>
               <NavLink to={'about'}>About</NavLink>
             </li>
