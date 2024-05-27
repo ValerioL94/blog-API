@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   redirect,
+  Outlet,
 } from 'react-router-dom';
 import { postsLoader, postLoader, commentAction } from './Loader-action.jsx';
 import ErrorPage from './routes/error-page.jsx';
@@ -18,22 +19,19 @@ export default function App() {
       element: <Root />,
       errorElement: <ErrorPage />,
       children: [
+        { index: true, loader: async () => redirect('home') },
         {
-          errorElement: <ErrorPage />,
+          path: 'home',
+          element: <Home />,
+        },
+        { path: 'about', element: <About /> },
+        {
+          path: 'posts',
+          element: <Outlet />,
           children: [
-            { index: true, loader: async () => redirect('home') },
+            { index: true, element: <Blog />, loader: postsLoader },
             {
-              path: 'home',
-              element: <Home />,
-            },
-            {
-              path: 'posts',
-              element: <Blog />,
-              loader: postsLoader,
-            },
-            { path: 'about', element: <About /> },
-            {
-              path: 'posts/:postId',
+              path: ':postId',
               element: <Post />,
               loader: postLoader,
               action: commentAction,
