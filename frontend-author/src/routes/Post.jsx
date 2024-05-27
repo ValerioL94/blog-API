@@ -2,7 +2,7 @@ import { useLoaderData, Form, useActionData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-function Post() {
+export default function Post() {
   const response = useActionData();
   const { commentsInPost, post } = useLoaderData();
   const sortedComments = commentsInPost.sort((a, b) => {
@@ -118,5 +118,3 @@ function Post() {
     </div>
   );
 }
-
-export default Post;
