@@ -9,11 +9,9 @@ export default function Root() {
             <li>
               <NavLink to={'home'}>Home</NavLink>
             </li>
-            <span>|</span>
             <li>
               <NavLink to={'posts'}>Posts</NavLink>
             </li>
-            <span>|</span>
             <li>
               <NavLink to={'about'}>About</NavLink>
             </li>
