@@ -70,13 +70,14 @@ export default function Post() {
         <Form className="form-group" method="post">
           <label htmlFor="username">Username: </label>
           <input
+            type="text"
             name="username"
             id="username"
             className="form-control"
-            type="text"
             onChange={handleChange}
             value={comment.username}
             placeholder="John Doe"
+            autoComplete="username"
             required
           />
           <label htmlFor="content">Comment: </label>
