@@ -1,4 +1,6 @@
 header {
+  display: flex;
+  justify-content: center;
   color: white;
   background-color: mediumblue;
   font-weight: 600;
@@ -6,16 +8,15 @@ header {
   position: sticky;
   top: 0;
 }
-
-#navbar span {
-  cursor: default;
+#navbar {
+  width: 100%;
+  max-width: 750px;
 }
-
 #navbar ul {
   display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 0 5px;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0;
   list-style: none;
 }
 

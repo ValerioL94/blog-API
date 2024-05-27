@@ -77,6 +77,7 @@ function Post() {
             onChange={handleChange}
             value={comment.username}
             placeholder="John Doe"
+            autoComplete="username"
             required
           />
           <label htmlFor="content">Comment: </label>
