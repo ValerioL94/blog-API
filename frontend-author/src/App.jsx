@@ -2,21 +2,25 @@ import {
   createBrowserRouter,
   RouterProvider,
   redirect,
-  Outlet,
 } from 'react-router-dom';
+import { useAuth } from './provider/context.js';
 import { postsLoader, postLoader, commentAction } from './Loader-action.jsx';
+import { ProtectedRoute } from './routes/ProtectedRoute.jsx';
 import ErrorPage from './routes/Error-page.jsx';
 import Root from './routes/Root.jsx';
 import Home from './routes/Home.jsx';
 import Blog from './routes/Blog.jsx';
 import About from './routes/About.jsx';
 import Post from './routes/Post.jsx';
+import Login from './routes/Login.jsx';
+import Signup from './routes/Signup.jsx';
 
 export default function App() {
+  const { token } = useAuth();
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Root />,
+      element: <Root token={token} />,
       errorElement: <ErrorPage />,
       children: [
         { index: true, loader: async () => redirect('home') },
@@ -25,9 +29,11 @@ export default function App() {
           element: <Home />,
         },
         { path: 'about', element: <About /> },
+        { path: 'signup', element: <Signup /> },
+        { path: 'login', element: <Login /> },
         {
           path: 'posts',
-          element: <Outlet />,
+          element: <ProtectedRoute />,
           children: [
             { index: true, element: <Blog />, loader: postsLoader },
             {
