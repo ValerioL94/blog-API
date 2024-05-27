@@ -74,6 +74,7 @@ exports.log_in = asyncHandler(async (req, res, next) => {
       return res.status(200).json({
         message: 'Auth Passed',
         token,
+        expiresIn: opts.expiresIn,
       });
     }
   }

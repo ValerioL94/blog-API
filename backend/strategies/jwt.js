@@ -10,7 +10,7 @@ module.exports = new JwtStrategy(opts, function (jwt_payload, done) {
   User.findOne({ email: jwt_payload.email })
     .then((user) => {
       if (user) {
-        return done(null, user);
+        return done(null, true);
       } else {
         return done(null, false);
       }
