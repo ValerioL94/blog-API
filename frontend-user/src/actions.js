@@ -1,4 +1,4 @@
-const localUrl = 'http://localhost:3000/blog/posts';
+const localUrl = '/blog/posts';
 
 const postRequest = async (url, formData) => {
   const response = await fetch(url, {

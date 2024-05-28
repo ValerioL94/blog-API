@@ -1,4 +1,5 @@
-const localUrl = 'http://localhost:3000/blog/posts';
+const localUrl = '/blog/posts';
+
 const getRequest = async (url) => {
   const response = await fetch(url);
   if (!response.ok) {
