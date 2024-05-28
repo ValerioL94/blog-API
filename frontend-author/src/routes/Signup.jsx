@@ -32,12 +32,12 @@ export default function Signup() {
         authorKey: '',
       });
       setErrors([]);
-      navigate('/login');
+      navigate('/login', { replace: true });
     }
   }, [response, navigate]);
   return (
     <div className="wrapper">
-      <h1>Sign up</h1>
+      <h1>Sign-up</h1>
       <div className="form-wrapper">
         <Form className="form-group" method="post">
           <label htmlFor="username">Username:</label>
@@ -60,7 +60,7 @@ export default function Signup() {
             className="form-control"
             onChange={handleChange}
             value={user.email}
-            placeholder="Jackie@gmail.com"
+            placeholder="jackie@gmail.com"
             autoComplete="email"
             required
           />
@@ -70,7 +70,6 @@ export default function Signup() {
             name="password"
             id="password"
             className="form-control"
-            onChange={handleChange}
             placeholder="Minimum 8 characters"
             autoComplete="new-password"
             required
@@ -81,7 +80,6 @@ export default function Signup() {
             name="passwordConfirm"
             id="passwordConfirm"
             className="form-control"
-            onChange={handleChange}
             placeholder="Same as password"
             autoComplete="new-password"
             required
@@ -92,7 +90,6 @@ export default function Signup() {
             name="authorKey"
             id="authorKey"
             className="form-control"
-            onChange={handleChange}
             placeholder="Enter the secret key"
             required
           />

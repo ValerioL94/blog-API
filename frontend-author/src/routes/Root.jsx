@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import '../styles/Root.css';
 import { useAuth } from '../provider/context';
-// eslint-disable-next-line react/prop-types
 export default function Root() {
   const { token } = useAuth;
   return (
