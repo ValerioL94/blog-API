@@ -2,7 +2,7 @@ import { useLoaderData, Link } from 'react-router-dom';
 import '../styles/Blog.css';
 
 export default function Blog() {
-  const { posts } = useLoaderData();
+  const posts = useLoaderData();
   return (
     <div className="wrapper">
       <h1>Posts</h1>
