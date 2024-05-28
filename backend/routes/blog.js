@@ -12,26 +12,26 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   post_controller.create
 );
-router.get('/posts/:postid', post_controller.read);
+router.get('/posts/:postId', post_controller.read);
 router.put(
-  '/posts/:postid',
+  '/posts/:postId',
   passport.authenticate('jwt', { session: false }),
   post_controller.update
 );
 router.delete(
-  '/posts/:postid',
+  '/posts/:postId',
   passport.authenticate('jwt', { session: false }),
   post_controller.delete
 );
 
-router.post('/posts/:postid/comments', comment_controller.create);
+router.post('/posts/:postId/comments', comment_controller.create);
 router.put(
-  '/posts/:postid/comments/:commentid',
+  '/posts/:postId/comments/:commentid',
   passport.authenticate('jwt', { session: false }),
   comment_controller.update
 );
 router.delete(
-  '/posts/:postid/comments/:commentid',
+  '/posts/:postId/comments/:commentid',
   passport.authenticate('jwt', { session: false }),
   comment_controller.delete
 );

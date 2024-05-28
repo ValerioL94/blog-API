@@ -27,7 +27,7 @@ exports.create = [
       title: req.body.title,
       content: req.body.content,
       published: req.body.published,
-      author: req.user.id,
+      author: req.body.authorId,
     });
     if (!errors.isEmpty()) {
       return res.json(errors);
@@ -38,8 +38,8 @@ exports.create = [
 ];
 exports.read = asyncHandler(async (req, res, next) => {
   const [post, commentsInPost] = await Promise.all([
-    Post.findById(req.params.postid).populate('author', '-password').exec(),
-    Comment.find({ post: req.params.postid }).exec(),
+    Post.findById(req.params.postId).populate('author', '-password').exec(),
+    Comment.find({ post: req.params.postId }).exec(),
   ]);
   if (!post) {
     return res.status(404).send({ error: 'Post not Found' });
@@ -63,18 +63,18 @@ exports.update = [
       title: req.body.title,
       content: req.body.content,
       published: req.body.content,
-      author: req.user.id,
-      _id: req.params.postid,
+      author: req.body.authorId,
+      _id: req.params.postId,
     });
     if (!errors.isEmpty()) {
       return res.json(errors);
     }
-    await Post.findByIdAndUpdate(req.params.postid, post, {});
+    await Post.findByIdAndUpdate(req.params.postId, post, {});
     res.send({ message: `Post ${post._id} updated successfully` });
   }),
 ];
 
 exports.delete = asyncHandler(async (req, res, next) => {
-  await Post.findByIdAndDelete(req.params.postid).exec();
+  await Post.findByIdAndDelete(req.params.postId).exec();
   res.send({ message: 'Post deleted successfully.' });
 });
