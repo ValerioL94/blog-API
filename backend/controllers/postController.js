@@ -38,8 +38,8 @@ exports.create = [
 ];
 exports.read = asyncHandler(async (req, res, next) => {
   const [post, commentsInPost] = await Promise.all([
-    Post.findById(req.params.postId).populate('author', '-password').exec(),
-    Comment.find({ post: req.params.postId }).exec(),
+    Post.findById(req.params.postid).populate('author', '-password').exec(),
+    Comment.find({ post: req.params.postid }).exec(),
   ]);
   if (!post) {
     return res.status(404).send({ error: 'Post not Found' });
@@ -64,17 +64,17 @@ exports.update = [
       content: req.body.content,
       published: req.body.content,
       author: req.body.authorId,
-      _id: req.params.postId,
+      _id: req.params.postid,
     });
     if (!errors.isEmpty()) {
       return res.json(errors);
     }
-    await Post.findByIdAndUpdate(req.params.postId, post, {});
+    await Post.findByIdAndUpdate(req.params.postid, post, {});
     res.send({ message: `Post ${post._id} updated successfully` });
   }),
 ];
 
 exports.delete = asyncHandler(async (req, res, next) => {
-  await Post.findByIdAndDelete(req.params.postId).exec();
+  await Post.findByIdAndDelete(req.params.postid).exec();
   res.send({ message: 'Post deleted successfully.' });
 });

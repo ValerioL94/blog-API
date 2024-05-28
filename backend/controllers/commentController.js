@@ -18,7 +18,7 @@ exports.create = [
     const comment = new Comment({
       username: req.body.username,
       content: req.body.content,
-      post: req.params.postId,
+      post: req.params.postid,
     });
     if (!errors.isEmpty()) {
       return res.json(errors);
@@ -44,7 +44,7 @@ exports.update = [
     const comment = new Comment({
       username: req.body.username,
       content: req.body.content,
-      post: req.params.postId,
+      post: req.params.postid,
       _id: req.params.commentid,
     });
     if (!errors.isEmpty()) {
