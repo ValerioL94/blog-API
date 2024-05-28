@@ -38,7 +38,7 @@ export default function Login() {
       {!token ? (
         <div className="form-wrapper">
           <h1>Log-in</h1>
-          <Form className="form-group">
+          <Form className="form-group" method="post">
             <label htmlFor="email">Email:</label>
             <input
               type="email"

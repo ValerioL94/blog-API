@@ -8,7 +8,7 @@ const getRequest = async (url) => {
 
 export async function postsLoader() {
   try {
-    const data = await getRequest('/api/blog/posts');
+    const data = await getRequest('/blog/posts');
     return data;
   } catch (error) {
     throw new Error(error.message);
@@ -18,7 +18,7 @@ export async function postsLoader() {
 export async function postLoader(params) {
   const id = params.postid;
   try {
-    const data = await getRequest(`/api/blog/posts/${id}`);
+    const data = await getRequest(`/blog/posts/${id}`);
     return data;
   } catch (error) {
     throw new Error(error.message);

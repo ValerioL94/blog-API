@@ -17,18 +17,21 @@ export async function commentAction(params, request) {
   const formData = await request.formData();
   const payload = Object.fromEntries(formData.entries());
   try {
-    const data = await postRequest(`/api/blog/posts/${id}/comments`, payload);
+    const data = await postRequest(`/blog/posts/${id}/comments`, payload);
     return data;
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function signupAction(request) {
+export async function userAction(request, path) {
+  const endpoint = `/blog/users/${path}`;
   const formData = await request.formData();
   const payload = Object.fromEntries(formData.entries());
   try {
-    const data = await postRequest(`/api/users/`);
+    const data = await postRequest(endpoint, payload);
+    console.log(data);
+    return data;
   } catch (error) {
     throw new Error(error.message);
   }

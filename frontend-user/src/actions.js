@@ -17,7 +17,7 @@ export async function commentAction(params, request) {
   const formData = await request.formData();
   const payload = Object.fromEntries(formData.entries());
   try {
-    const data = await postRequest(`/api/blog/posts/${id}/comments`, payload);
+    const data = await postRequest(`/blog/posts/${id}/comments`, payload);
     return data;
   } catch (error) {
     throw new Error(error.message);
