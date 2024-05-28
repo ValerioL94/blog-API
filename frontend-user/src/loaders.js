@@ -1,5 +1,3 @@
-const localUrl = '/blog/posts';
-
 const getRequest = async (url) => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -10,7 +8,7 @@ const getRequest = async (url) => {
 
 export async function postsLoader() {
   try {
-    const data = await getRequest(localUrl);
+    const data = await getRequest('/api/blog/posts');
     return data;
   } catch (error) {
     throw new Error(error.message);
@@ -18,9 +16,9 @@ export async function postsLoader() {
 }
 
 export async function postLoader(params) {
-  const id = params.postId;
+  const id = params.postid;
   try {
-    const data = await getRequest(`${localUrl}/${id}`);
+    const data = await getRequest(`/api/blog/posts/${id}`);
     return data;
   } catch (error) {
     throw new Error(error.message);

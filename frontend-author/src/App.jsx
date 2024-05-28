@@ -44,7 +44,7 @@ export default function App() {
               loader: async () => await postsLoader(),
             },
             {
-              path: ':postId',
+              path: ':postid',
               element: <Post />,
               loader: async ({ params }) => await postLoader(params),
               action: async ({ params, request }) =>
