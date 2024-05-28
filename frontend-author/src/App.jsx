@@ -16,7 +16,7 @@ import {
   Signup,
 } from './routes/index.js';
 import { postsLoader, postLoader } from './loaders.js';
-import { commentAction } from './actions.js';
+import { commentAction, userAction } from './actions.js';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -31,8 +31,16 @@ export default function App() {
           element: <Home />,
         },
         { path: 'about', element: <About /> },
-        { path: 'signup', element: <Signup /> },
-        { path: 'login', element: <Login /> },
+        {
+          path: 'signup',
+          element: <Signup />,
+          action: async ({ request }) => await userAction(request, 'signup'),
+        },
+        {
+          path: 'login',
+          element: <Login />,
+          action: async ({ request }) => await userAction(request, 'login'),
+        },
         { path: 'logout', element: <Logout /> },
         {
           path: 'posts',
