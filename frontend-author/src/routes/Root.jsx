@@ -1,7 +1,9 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import '../styles/Root.css';
+import { useAuth } from '../provider/context';
 // eslint-disable-next-line react/prop-types
-export default function Root({ token }) {
+export default function Root() {
+  const { token } = useAuth;
   return (
     <>
       <header>
@@ -14,6 +16,9 @@ export default function Root({ token }) {
               <>
                 <li>
                   <NavLink to={'posts'}>Posts</NavLink>
+                </li>
+                <li>
+                  <NavLink to={'logout'}>Log-out</NavLink>
                 </li>
               </>
             ) : (
