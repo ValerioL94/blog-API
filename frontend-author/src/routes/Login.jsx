@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../provider/context';
 
 export default function Login() {
-  const { token, setToken } = useAuth;
+  const { token, setToken } = useAuth();
   const response = useActionData();
   const navigate = useNavigate();
   const [user, setUser] = useState({

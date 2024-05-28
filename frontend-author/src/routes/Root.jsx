@@ -2,7 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import '../styles/Root.css';
 import { useAuth } from '../provider/context';
 export default function Root() {
-  const { token } = useAuth;
+  const { token } = useAuth();
   return (
     <>
       <header>
