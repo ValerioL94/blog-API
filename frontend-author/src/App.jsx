@@ -3,17 +3,20 @@ import {
   RouterProvider,
   redirect,
 } from 'react-router-dom';
-import { postsLoader, postLoader, commentAction } from './Loader.jsx';
-import { ProtectedRoute } from './routes/ProtectedRoute.jsx';
-import ErrorPage from './routes/Error-page.jsx';
-import Root from './routes/Root.jsx';
-import Home from './routes/Home.jsx';
-import Blog from './routes/Blog.jsx';
-import About from './routes/About.jsx';
-import Post from './routes/Post.jsx';
-import Login from './routes/Login.jsx';
-import Signup from './routes/Signup.jsx';
-import Logout from './routes/Logout.jsx';
+import {
+  About,
+  Blog,
+  ErrorPage,
+  Home,
+  Login,
+  Logout,
+  Post,
+  ProtectedRoute,
+  Root,
+  Signup,
+} from './routes/index.js';
+import { postsLoader, postLoader } from './loaders.js';
+import { commentAction } from './actions.js';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -35,12 +38,17 @@ export default function App() {
           path: 'posts',
           element: <ProtectedRoute />,
           children: [
-            { index: true, element: <Blog />, loader: postsLoader },
+            {
+              index: true,
+              element: <Blog />,
+              loader: async () => await postsLoader(),
+            },
             {
               path: ':postId',
               element: <Post />,
-              loader: postLoader,
-              action: commentAction,
+              loader: async ({ params }) => await postLoader(params),
+              action: async ({ params, request }) =>
+                await commentAction(params, request),
             },
           ],
         },
