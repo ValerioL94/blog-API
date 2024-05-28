@@ -6,7 +6,15 @@ export default function Home() {
     <div className="wrapper">
       <h1>Homepage</h1>
       {token ? (
-        <h1>Welcome back user! </h1>
+        <>
+          <p>
+            Welcome back <strong>{token.username}</strong> !
+          </p>
+          <p>
+            Here to make a new <Link to={'/posts'}>post</Link> ? Or just
+            checking something? Well no matter, have fun!
+          </p>
+        </>
       ) : (
         <>
           <p>
