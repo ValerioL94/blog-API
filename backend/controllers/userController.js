@@ -75,6 +75,7 @@ exports.log_in = asyncHandler(async (req, res, next) => {
         message: 'Auth Passed',
         token,
         expiresIn: opts.expiresIn,
+        username: user.username,
       });
     }
   }
