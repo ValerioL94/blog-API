@@ -73,9 +73,9 @@ exports.log_in = asyncHandler(async (req, res, next) => {
       const token = jwt.sign({ email }, secret, opts);
       return res.status(200).json({
         message: 'Auth Passed',
-        token: token,
+        token,
         expiresIn: opts.expiresIn,
-        user: user.username,
+        username: user.username,
         id: user._id,
       });
     }
