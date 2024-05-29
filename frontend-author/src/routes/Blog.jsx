@@ -9,33 +9,42 @@ export default function Blog() {
       <div className="posts-wrapper">
         {!posts.length && <h2>Fetching posts...</h2>}
         {posts.length &&
-          posts.map((data) =>
-            data.published ? (
-              <div key={data._id} className="post-preview">
-                <h2>
-                  <Link to={`${data._id}`}>{data.title}</Link>
-                </h2>
-                <p>
-                  <strong>Author:</strong> {data.author.username}
-                </p>
-                <p>
-                  <strong>Date:</strong>{' '}
-                  {new Date(data.createdAt).toLocaleString()}
-                </p>
-                <hr />
-              </div>
-            ) : (
-              ''
-            )
-          )}
+          posts.map((data) => (
+            <div key={data._id} className="post-preview">
+              <h2>
+                <Link to={`${data._id}`}>{data.title}</Link>
+              </h2>
+              <p>
+                <strong>Author:</strong> {data.author.username}
+              </p>
+              <p>
+                <strong>Published: </strong> {data.published ? 'Yes' : 'No'}
+              </p>
+              <p>
+                <strong>Date:</strong>{' '}
+                {new Date(data.createdAt).toLocaleString()}
+              </p>
+              <hr />
+            </div>
+          ))}
       </div>
-      <button
-        style={{ alignSelf: 'flex-end', margin: '10px' }}
-        className="form-submit"
-        onClick={() => (document.documentElement.scrollTop = 0)}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          margin: '10px',
+          fontWeight: 600,
+        }}
       >
-        Top &#8679;
-      </button>
+        <Link to={'newpost'}>New post</Link>
+        <button
+          className="form-submit"
+          onClick={() => (document.documentElement.scrollTop = 0)}
+        >
+          Top &#8679;
+        </button>
+      </div>
     </div>
   );
 }
