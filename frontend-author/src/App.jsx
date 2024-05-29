@@ -10,15 +10,17 @@ import {
   Home,
   Login,
   Logout,
+  NewPost,
   Post,
   ProtectedRoute,
   Root,
   Signup,
 } from './routes/index.js';
 import { postsLoader, postLoader } from './loaders.js';
-import { commentAction, userAction } from './actions.js';
-
+import { commentAction, userAction, postAction } from './actions.js';
+import { useAuth } from './provider/context.js';
 export default function App() {
+  const { token } = useAuth();
   const router = createBrowserRouter([
     {
       path: '/',
@@ -57,6 +59,12 @@ export default function App() {
               loader: async ({ params }) => await postLoader(params),
               action: async ({ params, request }) =>
                 await commentAction(params, request),
+            },
+            {
+              path: 'newpost',
+              element: <NewPost />,
+              action: async ({ request }) =>
+                await postAction(request, token.token),
             },
           ],
         },
