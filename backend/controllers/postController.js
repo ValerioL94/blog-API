@@ -21,13 +21,14 @@ exports.create = [
     .isLength({ min: 1 })
     .escape()
     .unescape('&#x27;'),
+  body('published').toBoolean(),
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     const post = new Post({
       title: req.body.title,
       content: req.body.content,
       published: req.body.published,
-      author: req.body.authorId,
+      author: req.body.author,
     });
     if (!errors.isEmpty()) {
       return res.json(errors);
@@ -57,13 +58,14 @@ exports.update = [
     .isLength({ min: 1 })
     .escape()
     .unescape('&#x27;'),
+  body('published').toBoolean(),
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     const post = new Post({
       title: req.body.title,
       content: req.body.content,
-      published: req.body.content,
-      author: req.body.authorId,
+      published: req.body.published,
+      author: req.body.author,
       _id: req.params.postid,
     });
     if (!errors.isEmpty()) {
