@@ -4,6 +4,7 @@ import ErrorPage from './Error-page.jsx';
 import Home from './Home.jsx';
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
+import NewPost from './NewPost.jsx';
 import Post from './Post.jsx';
 import { ProtectedRoute } from './ProtectedRoute.jsx';
 import Root from './Root.jsx';
@@ -16,6 +17,7 @@ export {
   Home,
   Login,
   Logout,
+  NewPost,
   Post,
   ProtectedRoute,
   Root,
