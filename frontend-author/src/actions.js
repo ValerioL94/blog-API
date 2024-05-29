@@ -12,6 +12,21 @@ const postRequest = async (url, formData) => {
   return response.json();
 };
 
+const postRequestAuth = async (url, formData, token) => {
+  const response = await fetch(url, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `bearer ${token}`,
+    },
+    body: JSON.stringify(formData),
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP error: Status ${response.status}`);
+  }
+  return response.json();
+};
+
 export async function commentAction(params, request) {
   const id = params.postid;
   const formData = await request.formData();
@@ -24,12 +39,24 @@ export async function commentAction(params, request) {
   }
 }
 
+export async function postAction(request, token) {
+  const endpoint = `/blog/posts`;
+  const formData = await request.formData();
+  const payload = Object.fromEntries(formData.entries());
+  try {
+    const data = await postRequestAuth(endpoint, payload, token);
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
 export async function userAction(request, path) {
   const endpoint = `/blog/users/${path}`;
   const formData = await request.formData();
   const payload = Object.fromEntries(formData.entries());
   try {
     const data = await postRequest(endpoint, payload);
+    console.log(data);
     return data;
   } catch (error) {
     throw new Error(error.message);
