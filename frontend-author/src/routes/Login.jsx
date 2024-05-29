@@ -69,7 +69,7 @@ export default function Login() {
             <ul>
               {errors.map((error) => (
                 <li className="errors-list" key={uuidv4()}>
-                  {error.msg}
+                  {error}
                 </li>
               ))}
             </ul>

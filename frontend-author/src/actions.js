@@ -30,7 +30,6 @@ export async function userAction(request, path) {
   const payload = Object.fromEntries(formData.entries());
   try {
     const data = await postRequest(endpoint, payload);
-    console.log(data);
     return data;
   } catch (error) {
     throw new Error(error.message);
