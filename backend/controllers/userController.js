@@ -79,6 +79,7 @@ exports.log_in = asyncHandler(async (req, res, next) => {
         id: user._id,
       });
     }
+    return res.json({ errors: ['Wrong password'] });
   }
-  return res.status(401).json({ message: 'Auth Failed' });
+  return res.json({ errors: ['Email not found'] });
 });
