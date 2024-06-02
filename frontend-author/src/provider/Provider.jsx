@@ -2,26 +2,33 @@ import { useEffect, useMemo, useState } from 'react';
 import { AuthContext } from './context';
 import { Navigate } from 'react-router-dom';
 
+const checkTokenValidity = (token) => {
+  if (!token) return false;
+  const expirationTime = JSON.parse(atob(token.token.split('.')[1])).exp * 1000;
+  return Date.now() < expirationTime;
+};
+
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
-  // State to hold the authentication token
-  const [token, setToken] = useState(null);
-
+  const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
   useEffect(() => {
-    function handleExp() {
-      setToken();
-      <Navigate to={'/home'} replace={true} />;
-    }
-    if (token) {
-      const expTime = Date.now() + token.expiresIn * 1000;
-      const timeLeft = expTime - Date.now();
+    if (token && checkTokenValidity(token)) {
+      localStorage.setItem('token', JSON.stringify(token));
+      const expirationTime =
+        JSON.parse(atob(token.token.split('.')[1])).exp * 1000;
+      const timeUntilExpiration = expirationTime - Date.now();
       setTimeout(() => {
-        handleExp();
-      }, timeLeft);
+        localStorage.removeItem('token');
+        setToken();
+        <Navigate to={'/login'} replace={true} />;
+      }, timeUntilExpiration);
+    } else {
+      localStorage.removeItem('token');
+      setToken();
+      <Navigate to={'/login'} replace={true} />;
     }
   }, [token]);
 
-  // Memoized value of the authentication context
   const contextValue = useMemo(
     () => ({
       token,
@@ -30,7 +37,6 @@ const AuthProvider = ({ children }) => {
     [token]
   );
 
-  // Provide the authentication context to the children components
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
