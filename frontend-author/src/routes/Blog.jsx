@@ -1,8 +1,9 @@
-import { useLoaderData, Link } from 'react-router-dom';
+import { useLoaderData, Link, useSubmit } from 'react-router-dom';
 import '../styles/Blog.css';
 
 export default function Blog() {
   const posts = useLoaderData();
+  const submit = useSubmit();
   return (
     <div className="wrapper">
       <h1>Posts</h1>
@@ -24,6 +25,16 @@ export default function Blog() {
                 <strong>Date:</strong>{' '}
                 {new Date(data.createdAt).toLocaleString()}
               </p>
+              <button
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  submit({ id: data._id }, { method: 'delete' });
+                }}
+                className="form-submit"
+              >
+                Delete
+              </button>
               <hr />
             </div>
           ))}
@@ -39,6 +50,7 @@ export default function Blog() {
       >
         <Link to={'newpost'}>New post</Link>
         <button
+          type="button"
           className="form-submit"
           onClick={() => (document.documentElement.scrollTop = 0)}
         >
