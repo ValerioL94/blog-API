@@ -56,6 +56,6 @@ exports.update = [
 ];
 
 exports.delete = asyncHandler(async (req, res, next) => {
-  await Comment.findByIdAndDelete(req.params.commentid).exec();
+  await Comment.findByIdAndDelete(req.body.id).exec();
   res.send({ message: 'Comment deleted successfully.' });
 });
