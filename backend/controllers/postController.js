@@ -72,11 +72,14 @@ exports.update = [
       return res.json(errors);
     }
     await Post.findByIdAndUpdate(req.params.postid, post, {});
-    res.send({ message: `Post ${post._id} updated successfully` });
+    res.json({ message: `Post ${post._id} updated successfully` });
   }),
 ];
 
 exports.delete = asyncHandler(async (req, res, next) => {
-  await Post.findByIdAndDelete(req.params.postid).exec();
-  res.send({ message: 'Post deleted successfully.' });
+  await Promise.all([
+    Comment.deleteMany({ post: req.body.id }).exec(),
+    Post.findByIdAndDelete(req.body.id).exec(),
+  ]);
+  res.json({ message: `Post ${req.body.id} deleted successfully` });
 });
