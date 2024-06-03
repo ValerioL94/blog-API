@@ -17,7 +17,11 @@ import {
   Signup,
 } from './routes/index.js';
 import { postsLoader, postLoader } from './loaders.js';
-import { commentAction, userAction, postAction } from './actions.js';
+import {
+  userAction,
+  // commentAction,
+  postAction,
+} from './actions.js';
 import { useAuth } from './provider/context.js';
 export default function App() {
   const { token } = useAuth();
@@ -52,19 +56,22 @@ export default function App() {
               index: true,
               element: <Blog />,
               loader: async () => await postsLoader(),
+              action: async ({ request, params }) =>
+                await postAction(request, params, token),
             },
             {
               path: ':postid',
               element: <Post />,
               loader: async ({ params }) => await postLoader(params),
-              action: async ({ params, request }) =>
-                await commentAction(params, request),
+              action: async ({ request, params }) =>
+                await postAction(request, params, token),
             },
+            // await commentAction(params, request),
             {
               path: 'newpost',
               element: <NewPost />,
-              action: async ({ request }) =>
-                await postAction(request, token.token),
+              action: async ({ request, params }) =>
+                await postAction(request, params, token),
             },
           ],
         },
