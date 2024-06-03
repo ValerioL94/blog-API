@@ -25,7 +25,7 @@
 }
 .comments-wrapper h3 {
   margin: 0;
-  color: forestgreen;
+  color: green;
 }
 .comment {
   padding: 5px;
@@ -35,7 +35,7 @@
   padding: 10px;
 }
 .form-wrapper h3 {
-  color: forestgreen;
+  color: green;
 }
 
 .form-group {
@@ -53,7 +53,7 @@
 }
 .form-control:hover,
 .form-control:focus {
-  border: 2px solid forestgreen;
+  border: 2px solid green;
   outline: none;
 }
 
@@ -65,13 +65,14 @@
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  color: forestgreen;
+  color: green;
+  background-color: white;
 }
 .form-submit:hover,
 .form-submit:focus {
-  background-color: forestgreen;
+  background-color: green;
   color: white;
-  border-color: forestgreen;
+  border-color: green;
   outline: none;
 }
 .errors-list {
