@@ -24,3 +24,14 @@ export async function postLoader(params) {
     throw new Error(error.message);
   }
 }
+
+export async function commentLoader(params) {
+  try {
+    const data = await getRequest(
+      `blog/posts/${params.postid}/comments/${params.commentid}`
+    );
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
