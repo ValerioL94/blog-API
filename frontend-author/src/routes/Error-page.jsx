@@ -2,7 +2,6 @@ import { useRouteError, isRouteErrorResponse } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 export default function ErrorPage() {
   const error = useRouteError();
-
   function RootBoundary() {
     const error = useRouteError();
 
