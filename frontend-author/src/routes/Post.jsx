@@ -1,23 +1,31 @@
-import { useLoaderData, Form, useActionData } from 'react-router-dom';
+import {
+  useLoaderData,
+  Link,
+  useSubmit,
+  Form,
+  useActionData,
+  useNavigate,
+} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Post() {
+  const { post } = useLoaderData();
+  const [edit, setEdit] = useState(false);
   const response = useActionData();
-  const { commentsInPost, post } = useLoaderData();
-  const sortedComments = commentsInPost.sort((a, b) => {
-    let aDate = new Date(a.createdAt);
-    let bDate = new Date(b.createdAt);
-    return bDate - aDate;
-  });
-  const [comment, setComment] = useState({
-    username: '',
-    content: '',
-  });
   const [errors, setErrors] = useState([]);
+  const [updatedPost, setUpdatedPost] = useState({
+    title: post.title,
+    content: post.content,
+    published: post.published,
+    author: post.author._id,
+    _id: post._id,
+  });
+  const navigate = useNavigate();
+  const submit = useSubmit();
   function handleChange(e) {
-    setComment({
-      ...comment,
+    setUpdatedPost({
+      ...updatedPost,
       [e.target.name]: e.target.value,
     });
   }
@@ -26,96 +34,156 @@ export default function Post() {
       setErrors(response.errors);
     }
     if (response && !response.errors) {
-      setComment({ username: '', content: '' });
-      setErrors([]);
+      navigate('/posts', { replace: true });
     }
-  }, [response]);
+  }, [response, navigate]);
   return (
     <div className="wrapper">
-      <h1>{post.title}</h1>
-      <div className="post-fullview">
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p>
-            <strong>Author: </strong>
-            {post.author.username}
-          </p>
-          <p>
-            <strong>Date: </strong>
-            {new Date(post.createdAt).toLocaleString()}{' '}
-          </p>
-        </div>
-        <p>{post.content}</p>
-        <p>
-          Leave a comment below or write to my fake email{' '}
-          <strong style={{ color: 'blue' }}>{post.author.email}</strong> .
-        </p>
-      </div>
-      <div className="comments-wrapper">
-        <h3>Comments</h3>
-        {!commentsInPost.length && <p>There are no comments.</p>}
-        {commentsInPost &&
-          sortedComments.map((comment) => (
-            <div key={comment._id} className="comment">
+      {edit ? (
+        <>
+          <h1>Update Post</h1>
+          <div className="form-wrapper">
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                submit(updatedPost, { method: 'put' });
+              }}
+            >
+              <label htmlFor="title">Title:</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                className="form-control"
+                onChange={handleChange}
+                value={updatedPost.title}
+                required
+              />
+              <label htmlFor="content">Content:</label>
+              <textarea
+                style={{ resize: 'vertical' }}
+                name="content"
+                id="content"
+                rows="20"
+                className="form-control"
+                onChange={handleChange}
+                value={updatedPost.content}
+                required
+              ></textarea>
+              <label htmlFor="published">Published:</label>
+              <select
+                name="published"
+                id="published"
+                className="form-control"
+                onChange={handleChange}
+                value={updatedPost.published}
+                required
+              >
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+              <label htmlFor="author">Author:</label>
+              <input
+                type="text"
+                disabled
+                name="author"
+                id="author"
+                className="form-control"
+                value={post.author.username}
+              />
+              <div
+                style={{
+                  display: 'flex',
+                  margin: '10px',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <button type="submit" className="form-submit">
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  className="form-submit"
+                  onClick={() => {
+                    setEdit(false);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </Form>
+            {errors ? (
+              <ul>
+                {errors.map((error) => (
+                  <li className="errors-list" key={uuidv4()}>
+                    {error.msg}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              ''
+            )}
+          </div>
+        </>
+      ) : (
+        <>
+          <h1>{post.title}</h1>
+          <div className="post-fullview">
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p>
-                <strong>{comment.username}</strong>
+                <strong>Author: </strong>
+                {post.author.username}
               </p>
-              <p>{comment.content}</p>
-              <p>{new Date(comment.createdAt).toLocaleString()}</p>
-              <hr />
+              <p>
+                <strong>Created: </strong>
+                {new Date(post.createdAt).toLocaleString()}{' '}
+              </p>
+              <p>
+                <strong>Last updated: </strong>
+                {new Date(post.updatedAt).toLocaleString()}
+              </p>
             </div>
-          ))}
-      </div>
-      <div className="form-wrapper">
-        <h3>Add comment</h3>
-        <Form className="form-group" method="post">
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            className="form-control"
-            onChange={handleChange}
-            value={comment.username}
-            placeholder="John Doe"
-            autoComplete="username"
-            required
-          />
-          <label htmlFor="content">Comment: </label>
-          <textarea
-            style={{ resize: 'none' }}
-            name="content"
-            id="content"
-            className="form-control"
-            rows="5"
-            value={comment.content}
-            onChange={handleChange}
-            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit efficitur lacus nec fermentum. Sed nisl mauris, dapibus aliquam leo at, efficitur blandit diam."
-            maxLength={300}
-            required
-          ></textarea>
-          <button className="form-submit" type="submit">
-            Send
-          </button>
-        </Form>
-        {errors ? (
-          <ul>
-            {errors.map((error) => (
-              <li className="errors-list" key={uuidv4()}>
-                {error.msg}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          ''
-        )}
-      </div>
-      <button
-        style={{ alignSelf: 'flex-end', margin: '10px' }}
-        className="form-submit"
-        onClick={() => (document.documentElement.scrollTop = 0)}
-      >
-        Top &#8679;
-      </button>
+            <p>{post.content}</p>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              margin: '10px',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <button
+              type="button"
+              className="form-submit"
+              onClick={() => {
+                setEdit(true);
+              }}
+            >
+              Edit
+            </button>
+          </div>
+          <hr style={{ width: '100%' }} />
+          <div
+            style={{
+              display: 'flex',
+              margin: '10px',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Link to={'comments'}>Go to post&apos;s comments</Link>
+            <button
+              type="button"
+              className="form-submit"
+              onClick={() => (document.documentElement.scrollTop = 0)}
+            >
+              Top &#8679;
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
