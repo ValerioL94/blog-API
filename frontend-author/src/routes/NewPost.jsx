@@ -1,10 +1,11 @@
-import { Form, useActionData, useNavigate } from 'react-router-dom';
+import { Form, useActionData, useNavigate, useSubmit } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../provider/context';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function NewPost() {
   const { token } = useAuth();
+  const submit = useSubmit();
   const navigate = useNavigate();
   const response = useActionData();
   const [post, setPost] = useState({
@@ -25,21 +26,19 @@ export default function NewPost() {
       setErrors(response.errors);
     }
     if (response && !response.errors) {
-      setPost({
-        title: '',
-        content: '',
-        published: 'false',
-        author: token.id,
-      });
-      setErrors([]);
       navigate('/posts', { replace: true });
     }
-  }, [response, navigate, token.id]);
+  }, [response, navigate]);
   return (
     <div className="wrapper">
       <h1>New Post</h1>
       <div className="form-wrapper">
-        <Form method="post">
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submit(post, { method: 'post' });
+          }}
+        >
           <label htmlFor="title">Title:</label>
           <input
             type="text"
@@ -52,6 +51,7 @@ export default function NewPost() {
           />
           <label htmlFor="content">Content:</label>
           <textarea
+            style={{ resize: 'vertical' }}
             name="content"
             id="content"
             rows="20"
@@ -60,7 +60,7 @@ export default function NewPost() {
             value={post.content}
             required
           ></textarea>
-          <label htmlFor="published">Publish:</label>
+          <label htmlFor="published">Published:</label>
           <select
             name="published"
             id="published"
@@ -72,7 +72,15 @@ export default function NewPost() {
             <option value="false">No</option>
             <option value="true">Yes</option>
           </select>
-          <input type="hidden" name="author" id="author" value={token.id} />
+          <label htmlFor="author">Author: </label>
+          <input
+            type="text"
+            name="author"
+            id="author"
+            className="form-control"
+            value={token.username}
+            disabled
+          />
           <button type="submit" className="form-submit">
             Submit
           </button>
