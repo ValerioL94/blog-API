@@ -135,14 +135,16 @@ export default function Post() {
                 <strong>Author: </strong>
                 {post.author.username}
               </p>
-              <p>
-                <strong>Created: </strong>
-                {new Date(post.createdAt).toLocaleString()}{' '}
-              </p>
-              <p>
-                <strong>Last updated: </strong>
-                {new Date(post.updatedAt).toLocaleString()}
-              </p>
+              <div>
+                <p>
+                  <strong>Created: </strong>
+                  {new Date(post.createdAt).toLocaleString()}{' '}
+                </p>
+                <p>
+                  <strong>Last updated: </strong>
+                  {new Date(post.updatedAt).toLocaleString()}
+                </p>
+              </div>
             </div>
             <p>{post.content}</p>
           </div>
@@ -163,6 +165,19 @@ export default function Post() {
             >
               Edit
             </button>
+            <button
+              type="submit"
+              className="form-submit"
+              onClick={(e) => {
+                e.preventDefault();
+                submit({ id: post._id }, { method: 'delete' });
+                setTimeout(() => {
+                  navigate('/posts', { replace: true });
+                }, 100);
+              }}
+            >
+              Delete
+            </button>
           </div>
           <hr style={{ width: '100%' }} />
           <div
@@ -175,6 +190,7 @@ export default function Post() {
           >
             <Link to={'comments'}>Go to post&apos;s comments</Link>
             <button
+              style={{ alignSelf: 'flex-end' }}
               type="button"
               className="form-submit"
               onClick={() => (document.documentElement.scrollTop = 0)}
