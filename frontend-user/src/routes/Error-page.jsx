@@ -28,6 +28,7 @@ export default function ErrorPage() {
       <i>
         {error.status} {error.statusText || error.message}
       </i>
+      <p>{error.stack}</p>
       {RootBoundary()}
       <Link to="home">
         You can go back to the home page by clicking here, though!
