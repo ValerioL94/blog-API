@@ -45,12 +45,12 @@ exports.update = [
       username: req.body.username,
       content: req.body.content,
       post: req.params.postid,
-      _id: req.params.commentid,
+      _id: req.body.id,
     });
     if (!errors.isEmpty()) {
       return res.json(errors);
     }
-    await Comment.findByIdAndUpdate(req.params.commentid, comment, {});
+    await Comment.findByIdAndUpdate(req.body.id, comment, {});
     res.send({ message: `Comment ${comment._id} updated successfully` });
   }),
 ];

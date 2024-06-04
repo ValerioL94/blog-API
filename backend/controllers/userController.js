@@ -68,7 +68,7 @@ exports.log_in = asyncHandler(async (req, res, next) => {
     const match = await bcrypt.compare(password, user.password);
     if (match) {
       const opts = {};
-      opts.expiresIn = 300;
+      opts.expiresIn = 600;
       const secret = process.env.SECRET;
       const token = jwt.sign({ email }, secret, opts);
       return res.status(200).json({
