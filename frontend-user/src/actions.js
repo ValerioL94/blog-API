@@ -1,5 +1,6 @@
+const server = process.env.BACKEND_API;
 const postRequest = async (url, formData) => {
-  const response = await fetch(url, {
+  const response = await fetch(`${server}${url}`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
