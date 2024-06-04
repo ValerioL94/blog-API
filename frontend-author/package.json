@@ -3,12 +3,23 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "blog-API frontend-author",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValerioL94/blog-API.git"
+  },
+  "author": "ValerioL94",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ValerioL94/blog-API/issues"
+  },
+  "homepage": "https://github.com/ValerioL94/blog-API#readme",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
