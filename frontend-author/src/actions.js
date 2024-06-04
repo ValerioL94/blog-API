@@ -1,5 +1,6 @@
+const server = process.env.BACKEND_API;
 const postRequest = async (url, data) => {
-  const response = await fetch(url, {
+  const response = await fetch(`${server}${url}`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -13,7 +14,7 @@ const postRequest = async (url, data) => {
 };
 
 const authRequest = async (url, method, data, token) => {
-  const response = await fetch(url, {
+  const response = await fetch(`${server}${url}`, {
     method: method,
     headers: {
       'Content-Type': 'application/json',
