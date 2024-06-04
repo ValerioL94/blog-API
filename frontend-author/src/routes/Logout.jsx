@@ -9,7 +9,7 @@ export default function Logout() {
     setTimeout(() => {
       setToken();
       navigate('/home', { replace: true });
-    }, 2000);
+    }, 1000);
   }, [setToken, navigate]);
 
   return (

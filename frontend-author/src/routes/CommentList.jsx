@@ -1,4 +1,4 @@
-import { useLoaderData, Form, useActionData, Navigate } from 'react-router-dom';
+import { useLoaderData, Form, useActionData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Comment from './Comment';
