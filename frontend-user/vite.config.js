@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/blog': {
-        target: 'http://localhost:3000',
+        target: 'https://mint-quick-manager.glitch.me',
         changeOrigin: true,
       },
     },
