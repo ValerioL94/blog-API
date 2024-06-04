@@ -1,4 +1,4 @@
-const server = process.env.BACKEND_API;
+const server = 'https://mint-quick-manager.glitch.me';
 const getRequest = async (url) => {
   const response = await fetch(`${server}${url}`);
   if (!response.ok) {
