@@ -1,5 +1,6 @@
+const server = process.env.BACKEND_API;
 const getRequest = async (url) => {
-  const response = await fetch(url);
+  const response = await fetch(`${server}${url}`);
   if (!response.ok) {
     throw new Error(`HTTP error: Status ${response.status}`);
   }
