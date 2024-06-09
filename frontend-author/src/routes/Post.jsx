@@ -146,7 +146,7 @@ export default function Post() {
                 </p>
               </div>
             </div>
-            <p>{post.content}</p>
+            <p style={{whiteSpace: 'break-spaces'}}>{post.content}</p>
           </div>
           <div
             style={{
