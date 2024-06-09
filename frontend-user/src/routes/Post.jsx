@@ -44,7 +44,7 @@ function Post() {
             {new Date(post.createdAt).toLocaleString()}{' '}
           </p>
         </div>
-        <p>{post.content}</p>
+        <p style={{whiteSpace: 'break-spaces'}}>{post.content}</p>
         <p>
           Leave a comment below or write to my fake email{' '}
           <strong style={{ color: 'blue' }}>{post.author.email}</strong> .
@@ -59,7 +59,7 @@ function Post() {
               <p>
                 <strong>{comment.username}</strong>
               </p>
-              <p>{comment.content}</p>
+              <p style={{whiteSpace: 'break-spaces'}}>{comment.content}</p>
               <p>{new Date(comment.createdAt).toLocaleString()}</p>
               <hr />
             </div>
