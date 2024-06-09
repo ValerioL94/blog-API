@@ -101,7 +101,7 @@ export default function Comment({ data }) {
           <p>
             <strong>{data.username}</strong>
           </p>
-          <p>{data.content}</p>
+          <p style={{whiteSpace: 'break-spaces'}}>{data.content}</p>
           <p>{new Date(data.createdAt).toLocaleString()}</p>
           <div
             style={{
